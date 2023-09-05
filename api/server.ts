@@ -1,7 +1,8 @@
 import Fastify from 'fastify'
 import Cors from '@fastify/cors'
 import fastifyIO from "fastify-socket.io";
-import { socket } from './lib/socket';
+import { SendMessage } from './controller/send';
+import { ReceiveMessage } from './controller/receive';
 
 async function Main() {
 
@@ -20,12 +21,8 @@ async function Main() {
         }
     })
 
-    fastify.get('/:name', async (req, res) => {
-        const { name }: any = req.params
-        socket.emit('conection', () => {
-            res.status(200).send({ Name: name })
-        })
-    })
+    fastify.register(SendMessage)
+    fastify.register(ReceiveMessage)
 
     fastify.listen({ port: 3333 })
 
