@@ -3,4 +3,4 @@ import http from 'http';
 
 const server = http.createServer();
 
-export const socket = new Server()
+export const socket = new Server(server)
