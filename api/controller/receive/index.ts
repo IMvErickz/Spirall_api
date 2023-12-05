@@ -1,11 +1,13 @@
 import { FastifyInstance } from "fastify";
-import { socket } from "../../lib/socket";
+import { io } from "../../lib/socket";
 
 export async function ReceiveMessage(fastify: FastifyInstance) {
-    fastify.get('/:oi', async (req, res) => {
+    fastify.get('/received', async (req, res) => {
         const { message }: any = req.params
-        socket.emit('conection', () => {
-            res.status(200).send({ Message: message })
+        io.on('connection', (socket) => {
+            socket.on('chat message', (msg) => {
+                return res.status(200).send(msg)
+            })
         })
     })
 }
