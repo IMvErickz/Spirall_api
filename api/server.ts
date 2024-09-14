@@ -9,9 +9,7 @@ import { RegisterUser } from './controller/user/register';
 import { SendMessage } from './controller/send';
 import { Auth } from './controller/auth/auth';
 import { ReceiveMessage } from './controller/receive';
-import { io } from './lib/socket';
 
-async function Main() {
 
     const fastify = Fastify({
         logger: true
@@ -53,7 +51,3 @@ async function Main() {
     fastify.register(ReceiveMessage)
 
     server.listen({ port: 3333 })
-
-}
-
-Main()
