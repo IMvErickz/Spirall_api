@@ -19,10 +19,8 @@ import { ReceiveMessage } from './controller/receive';
         origin: true
     })
 
-    const server = http.createServer();
 
-
-    const io = new Server(server, {
+    const io = new Server(fastify.server, {
         cors: {
             origin: true
         }
@@ -50,4 +48,4 @@ import { ReceiveMessage } from './controller/receive';
 
     fastify.register(ReceiveMessage)
 
-    server.listen({ port: 3333 })
+    fastify.listen({ port: 3333 })
