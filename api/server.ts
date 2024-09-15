@@ -35,17 +35,16 @@ import { ReceiveMessage } from './controller/receive';
 
     io.on('connection', (socket) => {
         console.log('Novo usuário conectado');
-    
-        socket.on('dynamicEvent', (data) => {
-            const { eventName, message } = data;
-            console.log(`Evento recebido: ${eventName}`, message);
-            io.emit(eventName, message);
+
+        socket.on('Adriel', (msg: string) => {
+            console.log('Mensagem recebida:', msg);
+            io.emit('Adriel', msg);
         });
-    
+
         socket.on('disconnect', () => {
             console.log('Usuário desconectado');
         });
-    });
+    })
 
     fastify.register(ReceiveMessage)
 
