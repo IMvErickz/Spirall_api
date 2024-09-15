@@ -41,6 +41,13 @@ import { ReceiveMessage } from './controller/receive';
             io.emit('Adriel', msg);
         });
 
+        socket.on('dynamicEvent', (data) => {
+            const { eventName, message } = data;
+            console.log(`Evento recebido: ${eventName}`, message);
+            // Emitir o evento com o nome e a mensagem fornecidos
+            io.emit(eventName, message);
+        });
+
         socket.on('disconnect', () => {
             console.log('Usuário desconectado');
         });
