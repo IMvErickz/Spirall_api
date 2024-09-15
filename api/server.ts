@@ -22,7 +22,7 @@ import { ReceiveMessage } from './controller/receive';
 
     const io = new Server(fastify.server, {
         cors: {
-            origin: true
+            origin: '*'
         }
     })
 
